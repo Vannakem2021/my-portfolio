@@ -1,0 +1,618 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 76% 48%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground font-roboto;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+/* Site Background */
+.site-background {
+  min-height: 100vh;
+  position: relative;
+  background-image: url("https://images3.alphacoders.com/135/1351305.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.site-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-background > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 120px; /* Increased padding to account for fixed white header */
+}
+
+/* Make sure sections don't overlap with header */
+section {
+  position: relative;
+  z-index: 5;
+}
+
+/* Footer should be outside the background effect */
+footer {
+  position: relative;
+  z-index: 5;
+  margin-top: auto;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Add animation to glass cards */
+.glass-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Hero Background Enhancement */
+.hero-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Base glass card - dark version (default) */
+.glass-card {
+  @apply bg-slate-800/80 backdrop-blur-md;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 0.5rem;
+  pointer-events: none;
+}
+
+/* Light glass card variation */
+.glass-card-light {
+  @apply bg-white/60 backdrop-blur-md;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.glass-card-light::before {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Text colors for dark cards */
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card h5,
+.glass-card h6 {
+  @apply text-white;
+}
+
+.glass-card p {
+  @apply text-gray-200;
+}
+
+.glass-card a:not(.tech-badge):not(.social-icon) {
+  @apply text-blue-300 hover:text-blue-200;
+}
+
+/* Text colors for light cards */
+.glass-card-light h1,
+.glass-card-light h2,
+.glass-card-light h3,
+.glass-card-light h4,
+.glass-card-light h5,
+.glass-card-light h6 {
+  @apply text-gray-900;
+}
+
+.glass-card-light p {
+  @apply text-gray-700;
+}
+
+.glass-card-light a:not(.tech-badge):not(.social-icon) {
+  @apply text-blue-600 hover:text-blue-800;
+}
+
+/* Responsive Utilities */
+.container {
+  @apply w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Social Icon Button Styles */
+.social-icon {
+  @apply p-2 rounded-full bg-slate-700/70 hover:bg-slate-600/70 transition-all backdrop-blur-sm text-white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Technology Badge */
+.tech-badge {
+  @apply px-3 py-1 text-xs font-medium rounded-full bg-slate-700/90 backdrop-blur-sm text-gray-100 inline-block mr-1 mb-1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tech-badge:hover {
+  @apply bg-slate-600/90;
+  transform: translateY(-1px);
+}
+
+/* Timeline Styling */
+.timeline-item {
+  @apply relative pl-8 pb-10;
+}
+
+.timeline-item::before {
+  content: "";
+  @apply absolute left-0 top-0 h-full w-0.5 bg-gray-700;
+}
+
+.timeline-dot {
+  @apply absolute left-[-6px] top-1 w-3 h-3 rounded-full bg-primary;
+}
+
+/* Improved input focus states for accessibility */
+input:focus,
+textarea:focus,
+select:focus {
+  @apply outline-none ring-2 ring-primary/50;
+}
+
+/* Print styles */
+@media print {
+  body {
+    @apply text-black bg-white;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Chat animations and effects */
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blinkCursor {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.chat-message {
+  animation: messageAppear 0.3s ease-out forwards;
+}
+
+.typing-indicator div {
+  animation: blinkCursor 1s infinite;
+}
+
+.chat-send-button {
+  transition: all 0.2s ease;
+}
+
+.chat-send-button:hover {
+  transform: scale(1.05);
+}
+
+.chat-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-input:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25);
+}
+
+/* Prevent chat section from causing page scrolling */
+.isolate-scroll {
+  isolation: isolate;
+  contain: content;
+  position: relative;
+}
+
+/* Ensure scrolling is contained within the chat container */
+#chat-messages-container,
+.chat-messages-container {
+  overscroll-behavior: contain;
+  scroll-behavior: auto;
+  position: relative;
+  height: 24rem; /* h-96 */
+  max-height: 24rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Keep form input fixed */
+.chat-form {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(17, 24, 39, 0.5);
+  z-index: 10;
+}
+
+/* Smooth scrolling and section adjustments */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem; /* Adjusted for white header height */
+}
+
+/* Add padding to sections to account for fixed header */
+section[id] {
+  padding-top: 7rem;
+  margin-top: -3rem; /* Slightly reduced negative margin for better spacing with hide/show nav */
+  scroll-margin-top: 7rem; /* Ensures proper scrolling with hide/show nav */
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+}
+
+/* Additional animations for mobile menu */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item-animation {
+  animation: fadeSlideIn 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+.menu-item-animation:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.menu-item-animation:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.menu-item-animation:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Carousel animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Smoother transition for carousel items */
+.carousel-item-enter {
+  animation: fadeIn 0.4s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+.carousel-item-exit {
+  animation: fadeOut 0.4s ease-out forwards;
+}
+
+.carousel-prev-enter {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Improved fixed height for carousel containers */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.carousel-container:active {
+  cursor: grabbing;
+}
+
+/* Swipe indicator animation */
+@keyframes swipeHint {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Optional swipe indicators that can be added to the carousel container programmatically */
+.carousel-container::before,
+.carousel-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Only show swipe indicators on mobile devices */
+@media (max-width: 768px) {
+  .carousel-container:hover::before,
+  .carousel-container:hover::after {
+    animation: swipeHint 1.5s ease-in-out;
+  }
+}
+
+/* Carousel button styles */
+.carousel-button {
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateZ(0);
+}
+
+.carousel-button:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Carousel dot navigation */
+.carousel-dot {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  @apply bg-slate-600/50 border border-white/20;
+}
+
+.carousel-dot.active {
+  transform: scale(1.2);
+  @apply bg-blue-400 border-none;
+}
+
+.carousel-dot:hover {
+  background-color: rgba(100, 116, 139, 0.7);
+}
+
+/* Project link styles */
+.project-link {
+  @apply inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors;
+  position: relative;
+}
+
+.project-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.project-link:hover::after {
+  width: 100%;
+}
