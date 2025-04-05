@@ -7,8 +7,6 @@ const withBundleAnalyzer =
 
 const nextConfig = {
   reactStrictMode: true,
-  output: "export",
-  distDir: "out",
   images: {
     unoptimized: true,
     domains: [
